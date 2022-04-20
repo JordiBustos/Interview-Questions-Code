@@ -27,3 +27,5 @@ let judgePoint24 = A => {
             return true;
     return false;
 };
+
+judgePoint24([4, 8, 7, 8])
