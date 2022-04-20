@@ -1,7 +1,7 @@
-# Interview-Questions-FreeCodeCamp
+# Interview Questions and math Problems
 
-## Algorithms 100%
-## Data structures 48%
-## Take Home Projects 0%
-## Rosseta code 0%
-## Project Euler 0%
+## Algorithms
+## Data structures
+## Take Home Projects
+## Rosseta code
+## Project Euler
