@@ -22,6 +22,21 @@ var DoublyLinkedList = function() {
     this.tail = currentNode;
 
     while (currentNode) {
+      /*
+      N ->  A  ->   B  -> C  ->  D
+           currentNode
+      tmp = N
+      1) B -> A -> N -> C -> D
+              cN
+
+      2) El puntero next de B continúa siendo C ya que eso no fue modificado
+        C -> B -> A -> N -> D
+        cN
+      3) Lo mismo aplica para D.
+        D -> C -> B -> A -> N
+        cN
+      */
+
       tmp = currentNode.prev;
       currentNode.prev = currentNode.next;
       currentNode.next = tmp;
