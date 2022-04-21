@@ -2,6 +2,6 @@
 
 ## Algorithms
 ## Data structures
-## Take Home Projects
+## Take Home Interview Projects 
 ## Rosseta code
 ## Project Euler
