@@ -1,0 +1,3 @@
+Notes from: https://www.youtube.com/watch?v=Xnpo1atN-Iw
+
+Priority queue interface problem

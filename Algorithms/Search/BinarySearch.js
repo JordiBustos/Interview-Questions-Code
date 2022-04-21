@@ -29,7 +29,7 @@ const testArray = [
 const path = [];
 
 const binarySearch = (arr, key) => {
-        return binarySearchHelper(arr, key, 0, arr.length - 1)
+  return binarySearchHelper(arr, key, 0, arr.length - 1)
 }
 
 const binarySearchHelper = (arr, key, left, right) => {
@@ -46,4 +46,3 @@ const binarySearchHelper = (arr, key, left, right) => {
 }
 
 console.log(binarySearch(testArray, 1));
-

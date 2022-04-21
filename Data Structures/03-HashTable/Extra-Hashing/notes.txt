@@ -1,0 +1,77 @@
+Direct Access table:
+  Insertion takes O(1)
+  Search takes O(1)
+  Deletion takes O(1)
+
+Key -> Address -> Data
+
+Hashing provides O(1) on average for insert, search and delete.
+
+Hash function -> maps a big number or string to a small integer that can be used as index at a table.
+    Should be efficiently computable
+    Should uniformly distribute the keys
+    Collision resistant
+      Chaining: Each cell of hash table point to a linked list that have same hash function value.
+                Simple to implement.
+                Hash table never fills up.
+                Less sensitive to the hash fn or load factors
+                Wastage of space (extra space for link)
+                If chain becomes long, then search time can become O(n)
+
+                  n = number of keys stored
+                  m = number of slots in computable
+                  alpha = average keys per slot or load factor = n / m
+
+                    Insert search delete -> O(alpha + 1)
+
+      ----------------------------------------------------------
+      Open Addressing: All elements are stored in the hash table itself
+                       Size of table >= # of keys to be hashed
+
+                       1)Linear probing
+                          Easy to implement, best cache performance, suffers from clustering.
+
+                            h_i(x) = (Hash(X)+i) % HashTableSize
+                            if h_0 = (Hash(X) + 0) % HashTableSize is full we try h_1 and so on
+
+                            keys: 7, 36, 18, 62    HashTableSize=11     every slot in table is empty, occupied o deleted
+                            h_0(7) = (7 + 0) % 11 = 7
+                            h_0(36) = (36 + 0) % 11 = 3
+
+                            h_0(18) = (18 + 0) % 11 = 7 Is taken
+                            h_1(18) = (18 + 1) % 11 = 8
+
+                            h_0(62) = (62 % 11) = 7
+                            h_1(62) = 63 % 11 = 8
+                            h2(62) = 64 % 11 = 9
+
+                            Search works searching for the element using the hash function untill the element appear in that position or if is not in the table we hit an empty cell, if cell is deleted, continue
+
+                       2) Quadratic probing
+                          Average cache performance, suffer a lesser clustering than linear probing
+
+                          h_i(X) = (Hash(X) + i^2) % HashTableSize
+
+                       3) Double Hashing
+                          Poor cache performance, no clustering, requires more computation.
+
+                          h_i(X) = (Hash(X) + i * Hash2(X)) % HashTableSize
+
+                          h_0 = (Hash(X) + 0) % HashTableSize
+                          h_1 = (Hash(x) + 1 * Hash2(X)) % HashTableSize
+h(x) = x mod 7
+x = 9864567654
+
+h(x) = 4
+
+
+
+
+---------------------------------------------------------------------
+Advantages of bst over hash tables:
+
+  For a self balancing binary search tree time complexity of insert, delete, search is O(log n)
+  Can get all keys in sorted order by just doing inorder traversal of bst
+  Doing order statistics, finding closest lower and greater elements, doing ranger queries are easy to do with bst
+  Bsts are easy to implement
+  With self b. bsts all operations are guaranteed to work in O(log n)
