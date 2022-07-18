@@ -8,6 +8,6 @@ function latticePaths(gridSize) {
 
   return n/d
 }
-
 const factorial = (n) => (n > 0 ? n * factorial(n - 1) : 1);
+
 console.log(latticePaths(4));

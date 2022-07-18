@@ -6,7 +6,7 @@ What is the sum of the digits of the number 2^exponent?
 
 function powerDigitSum(e) {
   const n = BigInt(Math.pow(2, e))
-  const d = num.toString().split('')
+  const d = n.toString().split('')
 
-  return digits.reduce((sum, digit) => sum + parseInt(digit), 0)
+  return d.reduce((sum, digit) => sum + parseInt(digit), 0)
 }
