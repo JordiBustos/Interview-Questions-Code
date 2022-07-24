@@ -34,7 +34,7 @@ def local_minimum(f, a, b):
             if ((derivative(f, x+epsilon*2) > 0) and (derivative(f, x-epsilon*2) < 0)):
                 return x
             else:
-                # f'(x) = 0 but doesn't meet the conditions of a local minimun/maximun
+                # f'(x) = 0 but doesn't meet the conditions of a local minimun/maximun (e.g x**2 at x=0)
                 x += epsilon
         
 def local_maximun(f, a, b):
