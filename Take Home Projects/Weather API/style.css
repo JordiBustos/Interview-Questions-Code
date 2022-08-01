@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Roboto:wght@400;500;700;900&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size:18px;
+    color: white;
+    background-color:#161616;
+}
+
+#titles {
+    padding: 1.5rem 3rem;
+}
+
+#titles h1, #titles h2, #info p {
+    text-align: center;
+}
+
+#titles h1 {
+    margin-bottom:2rem;
+    font-size:4rem;
+    font-weight: 500;
+}
+
+#titles h2 {
+    font-size:3rem;
+    font-weight: 400;
+    margin-bottom:5rem;
+}
+
+
+#info {
+    font-size:1.5rem;
+}
+
+#info p {
+    margin-bottom:2rem;
+}
+
+#changeUnitButton {
+    margin-bottom: 2rem !important;
+    padding:1rem 1rem;
+    font-size:20px;
+    display: block;
+    margin: 0 auto;
+    color:aquamarine;
+    background-color: transparent;
+    border: 1px solid aquamarine;
+}
+
+#changeUnitButton:hover {
+    background-color: rgb(0, 196, 130);
+    color:white;
+}
+
+#changeUnitButton:active {
+  transform: translateY(4px);
+}
+
+#weather {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+h4 {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20vh;
+}
+
+h4 span { color: aquamarine !important; }
