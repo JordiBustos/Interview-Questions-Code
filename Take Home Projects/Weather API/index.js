@@ -26,13 +26,17 @@ function getWeather(latitude, longitude) {
     const API_GET = `${API_URL}${latitude}&${longitude}`
 
     const data = fetch(API_GET)
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) throw Error(response.status);
+      return response.json();
+    })
     .then(display)
+    .catch(err => console.error(err));
 }
 
 function display(data) {
     currentTempInCelsius = data.main.temp;
-    
+
     document.getElementById('ubication').innerText = `${data.name}, ${data.sys.country}`;
     document.getElementById('tmp').innerText = `${currentTempInCelsius} ${tempUnit ? 'C' : 'F'}`
     document.getElementById('moreInfo').innerText = `Humidity: ${data.main.humidity}`
