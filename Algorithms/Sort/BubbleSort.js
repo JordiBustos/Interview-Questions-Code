@@ -20,10 +20,34 @@ function bubbleSort(array) {
   for (let i = 0; i < array.length - 1; i++){
     for (let j = 0; j < array.length - 1 - i; j++){
       console.log(array)
-      if (array[j] > array[j+1]) [array[j], array[j + 1]] = [array[j + 1], array[j]];
+      if (array[j] > array[j+1]) {
+	[array[j], array[j + 1]] = [array[j + 1], array[j]];
+      }
     }
   }
   return array;
 }
 
 console.log(bubbleSort([5, 1, 4, 2, 8]));
+
+// O(n²), Constant Spatial complexity. Operates in place we need to create a copy beforehand to save the unsorted array. 
+
+function bubbleSortStopping(arr) {
+    let swapped = false;
+    let i = 0;
+
+    do {
+	swapped = false;
+	for (let j = 0; j < arr.length - 1 - i; j++ {
+	    if (arr[j] > arr[j+1]) {
+		[arr[j], arr[j+1]] = [arr[j+1], arr[j]];
+	    	swapped = true	
+	    }
+	}
+	i += 1;
+    } while (swapped);
+    return arr
+}
+
+
+

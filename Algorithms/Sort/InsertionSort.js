@@ -20,3 +20,6 @@ function insertionSort(array) {
 
 	return array;
 }
+
+// O(n²). Constant time complexity. Works good with almost sorted arrs.
+

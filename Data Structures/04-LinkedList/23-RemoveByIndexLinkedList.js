@@ -51,7 +51,7 @@ function LinkedList() {
     if (index < 0 || index >= length) return null;
     let returnedValue;
 
-    if (index === 0) {
+    if (index == 0) {
       let returnedValue = head.element;
       head = null;
       length--;

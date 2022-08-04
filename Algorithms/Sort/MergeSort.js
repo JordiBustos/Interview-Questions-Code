@@ -12,13 +12,14 @@ As an aside, this will be the last sorting algorithm we cover here. However, lat
 Instructions: Write a function mergeSort which takes an array of integers as input and returns an array of these integers in sorted order from least to greatest. A good way to implement this is to write one function, for instance merge, which is responsible for merging two sorted arrays, and another function, for instance mergeSort, which is responsible for the recursion that produces single-item arrays to feed into merge. Good luck!
 */
 
-const merge = (left, right) => {
+function merge(left, right) {
 	let i = 0, j = 0, mergedArr = [];
 
 	while (i < left.length && j < right.length){
 		if (left[i] < right[j]) mergedArr.push(left[i++]);
 		else mergedArr.push(right[j++])
 	}
+	
 	while (i < left.length){
 		mergedArr.push(left[i++])
 	}
@@ -26,10 +27,11 @@ const merge = (left, right) => {
 	while (j < right.length){
 		mergedArr.push(right[j++]);
 	}
+
 	return mergedArr;
 } 
 
-const mergeSort = (arr) => {
+function mergeSort(arr) {
 	if (arr.length == 1) return arr;
 
 	let index = Math.floor(arr.length / 2);
@@ -37,7 +39,13 @@ const mergeSort = (arr) => {
 	let right = mergeSort(arr.slice(index));
 
 	return merge(left, right);
-
 }
 
 console.log(mergeSort([1,23, 34, 3, 54, 5, 2, 222]))
+
+// Every case it's exactly the same (there are not worst or best case)
+// Most JS engines uses Merge Sort.
+// O(n logn) We goes through all the array but we don't have to make n²comparisons.
+
+
+

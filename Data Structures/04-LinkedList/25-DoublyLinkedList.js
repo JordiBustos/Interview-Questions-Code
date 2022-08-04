@@ -8,36 +8,38 @@ We've provided a Node object and started our DoublyLinkedList. Let's add two met
 Be careful to handle any possible edge cases when writing these methods, such as deletions for the first or last element. Also, removing any item on an empty list should return null.
 */
 
-var Node = function(data, prev) {
-  this.data = data;
-  this.prev = prev;
-  this.next = null;
-};
-var DoublyLinkedList = function() {
-  this.head = null;
-  this.tail = null;
-  // Only change code below this line
-  this.add = (data) => {
-    const newNode = new Node(data, this.tail);
+class Node {
+  constructor(data, prev) {
+    this.data = data;
+    this.prev = prev;
+    this.next = null;
+  }
+}
+
+class DoublyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+  }
+
+  add(item) {
+    const newNode = new Node(data this.tail);
     if (!this.head) {
       this.head = newNode;
       this.tail = newNode;
       return;
     }
-    let tmp = this.tail;
-    tmp.next = newNode;
-    this.tail = newNode;
+    [ this.tail.next, this.tail ] = [ newNode, newNode ]
   }
 
-  this.remove = (data) => {
+  remove(item) {
     if (this.head === null) return null;
 
     let tempNode = this.head;
-    if (tempNode.data === data){
+    if (tempNode.data == data) {
       this.head = tempNode.next;
-      tempNode = tempNode.next;
+      tempNode = tempNode.next
     }
-
     let tempNodeFromLast = this.tail;
 
     while (tempNode.next !== tempNodeFromLast ) {
@@ -66,6 +68,5 @@ var DoublyLinkedList = function() {
       this.tail = tempNode.prev;
       tempNode.prev.next = null;
     }
-  };
-  // Only change code above this line
-};
+  }
+}

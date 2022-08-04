@@ -8,37 +8,28 @@ Instructions: Write a function quickSort which takes an array of integers as inp
 */
 
 function quickSort(array) {
-  	if (array.length === 0) {
-    		return [];
-  	}
-  	const pivotValue = array[0];
-  // Sort elements into three piles
-  	let lesser = [];
-	let equal = [];
- 	let greater = [];
+    if (array.length === 0) {
+        return [];
+    }
+    // pivot could be the last one or some random number
+    const pivotValue = array[0];
+    
+    // Sort elements into three piles
+    let lesserThanPivot = [];
+    let equalToPivot = [];
+    let greaterThanPivot = [];
   
-	for (let e of array) {
-    		if (e < pivotValue) {
-      			lesser.push(e);
-    		} else if (e > pivotValue) {
-      			greater.push(e);
-    		} else {
-      			equal.push(e);
-    		}
+    for (let e of array) {
+	if (e < pivotValue) {
+	    lesserThanPivot.push(e);
+    	} else if (e > pivotValue) {
+      	    greaterThanPivot.push(e);
+    	} else {
+      	    equalToPitov.push(e);
+    	}
     return [...quickSort(lesser), ...equal, ...quickSort(greater)];
-  }
+    }
 }
 
-/*
- Haskell implementation
-
-quickSort[] = []
-quickSort(x:xs) = [a | a <- xs, a <= x] ++ x ++ [b | b <- xs, b > x]
-
-"a tal que a pertenece a xs y a <= x"
-	concatenado a x concatenado 
-a "b tal que b pertenece a xs y b > x"
-
-y el caso base es el array vacío que retorna vacío.
-x es el primer elemento
-*/
+// Very bad with sorted arrays
+// O(n logn) average case and maybe faster than merge sort.

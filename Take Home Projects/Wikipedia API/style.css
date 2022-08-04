@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Roboto:wght@400;500;700;900&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 19px;
+    color:white;
+    background-color: #161616;
+}
+
+#intro {
+    display: flex; 
+    align-items: center;
+    justify-content: center;   
+    flex-direction: column;
+    margin-top: 3rem;
+}
+
+#intro h1 {
+    font-size: 4rem;
+}
+
+#input {
+    margin-top:20vh;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#articles {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.singleArticle {
+    background-color: white;
+    width:60%;
+    height: 100%;
+    margin-bottom:4rem;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+}
+
+.singleArticle h2 {
+    color:rgb(36, 36, 36);
+}
+
+.singleArticle a {
+    color: #11998e;
+}
+
+#randomButton {
+    background-color: transparent;
+    border: 2px solid #11998e;
+    font-size:1.3rem;
+    color:white;
+    padding: 1.2rem 1.2rem;
+    margin-bottom:2.5rem;
+    text-decoration: none;
+}
+
+#inputArticle {
+    border:0;
+    border-bottom:2px solid #9b9b9b;
+    outline: 0;
+    color: white;
+    padding: .4rem 0;
+    background: transparent;
+    transition: border-color 0.2;
+    width:100%;
+    font-size:1.3rem;
+}
+
+#inputArticle::placeholder {
+    color: white;
+}
+
+#inputArticle:focus {
+    padding-bottom: 6px;
+    border-width:3px;
+    border-image: linear-gradient(to right, #11998e, #38ef7d);
+    border-image-slice: 1;
+}
+
+#showQuery {
+    margin-top: 3rem;
+    margin-left:20%;
+    font-size: 2rem;
+}
+
+@media only screen and (max-width:992px) {
+    .singleArticle {
+        width:90%;
+    }
+    .singleArticle a {
+        font-size:1rem;
+    }
+    #showQuery {
+        margin-left:5%;
+    }
+}
