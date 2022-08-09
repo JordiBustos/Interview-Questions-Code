@@ -12,57 +12,59 @@ Write a remove method that takes an element and removes it from the linked list.
 Note: The length of the list should decrease by one every time an element is removed from the linked list.
 */
 
-function LinkedList() {
-  var length = 0;
-  var head = null;
+class LinkedList {
+  constructor() {
+    var length = 0;
+    var head = null;
 
-  var Node = function(element){
-    this.element = element;
-    this.next = null;
-  };
+    var Node = function (element) {
+      this.element = element;
+      this.next = null;
+    };
 
-  this.size = function(){
-    return length;
-  };
+    this.size = function () {
+      return length;
+    };
 
-  this.head = function(){
-    return head;
-  };
+    this.head = function () {
+      return head;
+    };
 
-  this.add = function(element){
-    var node = new Node(element);
-    if(head === null){
+    this.add = function (element) {
+      var node = new Node(element);
+      if (head === null) {
         head = node;
-    } else {
-      var currentNode = head;
+      } else {
+        var currentNode = head;
 
-      while(currentNode.next){
-        currentNode  = currentNode.next;
+        while (currentNode.next) {
+          currentNode = currentNode.next;
+        }
+
+        currentNode.next = node;
       }
 
-      currentNode.next = node;
-    }
+      length++;
+    };
 
-    length++;
-  };
-
-  this.remove = function(element){
-    // Only change code below this line
-    if (head.element === element){
-      head = head.next;
-      length--;
-      return;
-    }
-    let current = head;
-    let previous;
-    while (current.next !== null && current.element !== element){
-      previous = current;
-      current = current.next;
-    }
-    if (current.next !== null){
-      previous.next = current.next;
-      length--;
-    }
-    // Only change code above this line
-  };
+    this.remove = function (element) {
+      // Only change code below this line
+      if (head.element === element) {
+        head = head.next;
+        length--;
+        return;
+      }
+      let current = head;
+      let previous;
+      while (current.next !== null && current.element !== element) {
+        previous = current;
+        current = current.next;
+      }
+      if (current.next !== null) {
+        previous.next = current.next;
+        length--;
+      }
+      // Only change code above this line
+    };
+  }
 }

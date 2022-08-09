@@ -45,25 +45,25 @@ class Set {
   // This is our union method
   union(set) {
     const newSet = new Set();
-    this.values().forEach(value => {
+    this.values().forEach((value) => {
       newSet.add(value);
-    })
-    set.values().forEach(value => {
+    });
+    set.values().forEach((value) => {
       newSet.add(value);
-    })
+    });
 
     return newSet;
   }
   // Only change code below this line
-  intersection(set){
+  intersection(set) {
     const intersectionSet = new Set();
-    const addToSet = element => {
+    const addToSet = (element) => {
       if (set.has(element)) intersectionSet.add(element);
-    }
+    };
 
     this.values().forEach(addToSet);
 
-    return intersectionSet
+    return intersectionSet;
   }
   // Only change code above this line
 }

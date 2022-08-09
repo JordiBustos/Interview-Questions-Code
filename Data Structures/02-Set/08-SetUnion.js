@@ -41,16 +41,16 @@ class Set {
   // This method will return the size of the set
   size() {
     return this.length;
-  };
+  }
   // Only change code below this line
-  union = function(anotherSet){
-        const newSet = new Set();
+  union = function (anotherSet) {
+    const newSet = new Set();
 
-        const addToSet = element => newSet.add(element);
+    const addToSet = (element) => newSet.add(element);
 
-        this.values().forEach(addToSet);
-        anotherSet.values().forEach(addToSet);
-        return newSet;
-    };
+    this.values().forEach(addToSet);
+    anotherSet.values().forEach(addToSet);
+    return newSet;
+  };
   // Only change code above this line
 }

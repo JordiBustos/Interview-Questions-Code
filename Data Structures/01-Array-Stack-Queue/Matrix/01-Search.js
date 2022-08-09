@@ -24,25 +24,26 @@
   3) repeat i, ii, iii till find element
 */
 
-const searchMatrix = (matrix,n,x) => {
-    let i = 0, j = n - 1;
+const searchMatrix = (matrix, n, x) => {
+  let i = 0,
+    j = n - 1;
 
-    while (i < n && j >= 0) {
-        if (matrix[i][j] == x) {
-            console.log(`Found at {${i}, ${j}}`)
-            return;
-        }
-        if (matrix[i][j] > x) j--;
-        else  i++;
+  while (i < n && j >= 0) {
+    if (matrix[i][j] == x) {
+      console.log(`Found at {${i}, ${j}}`);
+      return;
     }
-    return null;
-}
+    if (matrix[i][j] > x) j--;
+    else i++;
+  }
+  return null;
+};
 
-let matrix   =   [
-                 [10, 20, 30, 40 ],
-                 [15, 25, 35, 45 ],
-                 [ 27, 29, 37, 48 ],
-                 [ 32, 33, 39, 50 ]
-                 ];
+let matrix = [
+  [10, 20, 30, 40],
+  [15, 25, 35, 45],
+  [27, 29, 37, 48],
+  [32, 33, 39, 50],
+];
 
 searchMatrix(matrix, 4, 27);

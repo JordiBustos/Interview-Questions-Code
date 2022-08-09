@@ -13,7 +13,7 @@ Note: The remove method tests won't pass until the add and lookup methods are co
 */
 
 var called = 0;
-var hash = string => {
+var hash = (string) => {
   called++;
   var hashed = 0;
   for (var i = 0; i < string.length; i++) {
@@ -21,25 +21,25 @@ var hash = string => {
   }
   return hashed;
 };
-var HashTable = function() {
+var HashTable = function () {
   this.collection = {};
   // Only change code below this line
   this.add = (key, value) => {
     const hashedKey = hash(key);
     this.collection[hashedKey] = this.collection[hashedKey] || {};
     this.collection[hashedKey][key] = value;
-  }
+  };
 
   this.lookup = (key) => {
     const hashedKey = hash(key);
     return this.collection[hashedKey][key];
-  }
+  };
 
   this.remove = (key) => {
     const hashedKey = hash(key);
     delete this.collection[hashedKey][key];
     if (!Object.keys(this.collection[hashedKey]).length)
       delete this.collection[hashedKey];
-  }
+  };
   // Only change code above this line
 };

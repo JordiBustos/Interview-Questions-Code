@@ -8,85 +8,94 @@ Let's also implement a method that does the opposite: an elementAt method that t
 Write an isEmpty method that checks if the linked list is empty, an indexOf method that returns the index of a given element, and an elementAt that returns an element at a given index.
 */
 
-function LinkedList() {
-  var length = 0;
-  var head = null;
+class LinkedList {
+  constructor() {
+    var length = 0;
+    var head = null;
 
-  var Node = function(element){
-    this.element = element;
-    this.next = null;
-  };
+    class Node {
+      constructor(element) {
+        this.element = element;
+        this.next = null;
+      }
+    }
 
-  this.size = function() {
-    return length;
-  };
+    this.size = function () {
+      return length;
+    };
 
-  this.head = function(){
-    return head;
-  };
+    this.head = function () {
+      return head;
+    };
 
-  this.add = function(element){
-    var node = new Node(element);
-    if(head === null){
+    this.add = function (element) {
+      var node = new Node(element);
+      if (head === null) {
         head = node;
-    } else {
+      } else {
+        var currentNode = head;
+
+        while (currentNode.next) {
+          currentNode = currentNode.next;
+        }
+
+        currentNode.next = node;
+      }
+
+      length++;
+    };
+
+    this.remove = function (element) {
       var currentNode = head;
+      var previousNode;
+      if (currentNode.element === element) {
+        head = currentNode.next;
+      } else {
+        while (currentNode.element !== element) {
+          previousNode = currentNode;
+          currentNode = currentNode.next;
+        }
 
-      while(currentNode.next){
-        currentNode = currentNode.next;
+        previousNode.next = currentNode.next;
       }
 
-      currentNode.next = node;
-    }
+      length--;
+    };
 
-    length++;
-  };
-
-  this.remove = function(element){
-    var currentNode = head;
-    var previousNode;
-    if(currentNode.element === element){
-      head = currentNode.next;
-    } else {
-      while(currentNode.element !== element) {
-        previousNode = currentNode;
-        currentNode = currentNode.next;
+    // Only change code below this line
+    this.indexOf = (element) => {
+      if (length === 0)
+        return -1;
+      let current = head;
+      let index = 0;
+      while (current.next !== null && current.element !== element) {
+        current = current.next;
+        index++;
       }
+      if (current.next !== null)
+        return index;
+      return -1;
+    };
 
-      previousNode.next = currentNode.next;
-    }
+    this.elementAt = (index) => {
+      if (length === 0)
+        return undefined;
+      let current = head;
+      let auxIndex = 0;
+      while (current.next !== null && auxIndex < index) {
+        current = current.next;
+        auxIndex++;
+      }
+      if (current.next !== null)
+        return current.element;
+      return undefined;
+    };
 
-    length --;
-  };
-
-  // Only change code below this line
-  this.indexOf = (element) => {
-    if (length === 0) return -1;
-    let current = head;
-    let index = 0;
-    while (current.next !== null && current.element !== element){
-      current = current.next;
-      index++;
-    }
-    if (current.next !== null) return index;
-    return -1;
+    this.isEmpty = () => {
+      if (length === 0)
+        return true;
+      return false;
+    };
+    // Only change code above this line
   }
-
-  this.elementAt = (index) => {
-    if (length === 0) return undefined
-    let current = head;
-    let auxIndex = 0
-    while (current.next !== null && auxIndex < index){
-      current = current.next;
-      auxIndex++;
-    }
-    if (current.next !== null) return current.element;
-    return undefined;
-  }
-
-  this.isEmpty = () => {
-    if (length === 0) return true;
-    return false;
-  }
-  // Only change code above this line
 }

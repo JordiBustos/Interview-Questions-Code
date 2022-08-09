@@ -45,12 +45,12 @@ class Set {
   // This is our union method
   union(set) {
     const newSet = new Set();
-    this.values().forEach(value => {
+    this.values().forEach((value) => {
       newSet.add(value);
-    })
-    set.values().forEach(value => {
+    });
+    set.values().forEach((value) => {
       newSet.add(value);
-    })
+    });
 
     return newSet;
   }
@@ -68,18 +68,18 @@ class Set {
       smallSet = this;
     }
 
-    smallSet.values().forEach(value => {
+    smallSet.values().forEach((value) => {
       if (largeSet.dictionary[value]) {
         newSet.add(value);
       }
-    })
+    });
 
     return newSet;
   }
   // Only change code below this line
-  difference(set){
+  difference(set) {
     const newSet = new Set();
-    this.values().forEach(element => {
+    this.values().forEach((element) => {
       if (!set.values().includes(element)) newSet.add(element);
     });
     return newSet;

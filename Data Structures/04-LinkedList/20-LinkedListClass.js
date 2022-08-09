@@ -14,36 +14,38 @@ Note
 Your list's length should increase by one every time an element is added to the linked list.
 */
 
-function LinkedList() {
-  var length = 0;
-  var head = null;
+class LinkedList {
+  constructor() {
+    var length = 0;
+    var head = null;
 
-  var Node = function(element){
-    this.element = element;
-    this.next = null;
-  };
+    var Node = function (element) {
+      this.element = element;
+      this.next = null;
+    };
 
-  this.head = function(){
-    return head;
-  };
+    this.head = function () {
+      return head;
+    };
 
-  this.size = function(){
-    return length;
-  };
+    this.size = function () {
+      return length;
+    };
 
-  this.add = function(element){
-    // Only change code below this line
-    const newNode = new Node(element);
-    if (length === 0) {
-      head = newNode;
-    } else {
-      let tmpNode = head;
-      while (tmpNode.next !== null){
-       tmpNode = tmpNode.next;
+    this.add = function (element) {
+      // Only change code below this line
+      const newNode = new Node(element);
+      if (length === 0) {
+        head = newNode;
+      } else {
+        let tmpNode = head;
+        while (tmpNode.next !== null) {
+          tmpNode = tmpNode.next;
+        }
+        tmpNode.next = newNode;
       }
-      tmpNode.next = newNode;
-    }
-    length++;
-    // Only change code above this line
-  };
+      length++;
+      // Only change code above this line
+    };
+  }
 }

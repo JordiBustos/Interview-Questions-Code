@@ -13,17 +13,17 @@ class AVL(object):
 
         balance = self.getBalance(root)
 
-        if balance > 1 and key < root.left.val:
+        if balance > 1 and self.key < root.left.val:
             return self.rightRotate(root)
 
-        if balance < -1 and key > root.right.val:
+        if balance < -1 and self.key > root.right.val:
             return self.leftRotate(root)
 
-        if balance > 1 and key > root.left.val:
+        if balance > 1 and self.key > root.left.val:
             root.left = self.leftRotate(root.left)
             return self.rightRotate(root)
 
-        if balance < 1 and key < root.right.val:
+        if balance < 1 and self.key < root.right.val:
             root.right = self.rightRotate(root.right)
             return self.leftRotate(root)
         return root
@@ -36,7 +36,7 @@ class AVL(object):
         else:
             root.right = self.insert(root.right, key)
 
-        return orderTree(root)
+        return self.orderTree(root)
 
     def delete(self, root, key):
         if not root:
@@ -63,7 +63,7 @@ class AVL(object):
         if root is None:
             return root
 
-        return orderTree(root)
+        return self.orderTree(root)
 
 
     def leftRotate(self, z):
@@ -78,10 +78,8 @@ class AVL(object):
         z.right = tmp
 
         # Update heights
-        z.height = 1 + max(self.getHeight(z.left),
-                         self.getHeight(z.right))
-        y.height = 1 + max(self.getHeight(y.left),
-                         self.getHeight(y.right))
+        z.height = 1 + max(self.getHeight(z.left), self.getHeight(z.right))
+        y.height = 1 + max(self.getHeight(y.left), self.getHeight(y.right))
 
         # Return the new root
         return y

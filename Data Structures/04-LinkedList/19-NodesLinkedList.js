@@ -8,19 +8,19 @@ In our code editor, we've created two nodes, Kitten and Puppy, and we've manuall
 Create a Cat and Dog node and manually add them to the line.
 */
 
-var Node = function(element) {
+var Node = function (element) {
   this.element = element;
   this.next = null;
 };
-var Kitten = new Node('Kitten');
-var Puppy = new Node('Puppy');
+var Kitten = new Node("Kitten");
+var Puppy = new Node("Puppy");
 
 Kitten.next = Puppy;
 // Only change code below this line
 
-var Cat = new Node('Cat');
+var Cat = new Node("Cat");
 Puppy.next = Cat;
 
-var Dog = new Node('Dog');
+var Dog = new Node("Dog");
 
 Cat.next = Dog;

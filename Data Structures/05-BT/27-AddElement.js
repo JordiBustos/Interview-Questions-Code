@@ -17,54 +17,63 @@ We'll start simple. We've defined the skeleton of a binary search tree structure
 Hint: trees are naturally recursive data structures!
 */
 
-var displayTree = tree => console.log(JSON.stringify(tree, null, 2));
-function Node(value) {
-  this.value = value;
-  this.left = null;
-  this.right = null;
+var displayTree = (tree) => console.log(JSON.stringify(tree, null, 2));
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
 }
-function BinarySearchTree() {
-  this.root = null;
-  // Only change code below this line
-  this.addIterative = (element) => {
-    let newNode = new Node(element);
+class BinarySearchTree {
+  constructor() {
+    this.root = null;
+    // Only change code below this line
+    this.addIterative = (element) => {
+      let newNode = new Node(element);
 
-    if (!this.root){
-      this.root = newNode;
-      return undefined;
-    }
-    let current = this.root;
-    while (current){
-      if (current.value === newNode.value) return null;
-
-      const direction = current.value > newNode.value ? 'left' : 'right'
-      if (!current[direction]) {
-        current[direction] = newNode;
+      if (!this.root) {
+        this.root = newNode;
         return undefined;
       }
-      current = current[direction];
-    }
-  }
+      let current = this.root;
+      while (current) {
+        if (current.value === newNode.value) return null;
 
-  this.addRecursively = (value, node = this.root)=>{
-    let newNode = new Node(value);
-    // If there's no root, new node becomes root node.
-    if(!this.root){
-      this.root = newNode;
-      return
-    }
-    // Value already exists
-    if(newNode.value === node.value) return null;
+        const direction = current.value > newNode.value ? "left" : "right";
+        if (!current[direction]) {
+          current[direction] = newNode;
+          return undefined;
+        }
+        current = current[direction];
+      }
+    };
 
-    if(newNode.value <= node.value){
-        if(!node.left) { node.left = newNode; return}
+    this.addRecursively = (value, node = this.root) => {
+      let newNode = new Node(value);
+      // If there's no root, new node becomes root node.
+      if (!this.root) {
+        this.root = newNode;
+        return;
+      }
+      // Value already exists
+      if (newNode.value === node.value) return null;
+
+      if (newNode.value <= node.value) {
+        if (!node.left) {
+          node.left = newNode;
+          return;
+        }
         return this.addRecursively(value, node.left);
-
-      } else{
-        if(!node.right) { node.right = newNode; return}
+      } else {
+        if (!node.right) {
+          node.right = newNode;
+          return;
+        }
 
         return this.addRecursively(value, node.right);
       }
-    }
-  // Only change code above this line
+    };
+    // Only change code above this line
+  }
 }

@@ -1,2 +1,8 @@
 AVL:
   Difference in height between left & right must always be <= 1
+
+Front-end masters Computer science notes:
+  Specialized version of BST, self balancing mechanism built it.
+  Worst case becomes O(log n) thanks to balance
+  Sacrifice add performance and delete performance for extreme searchability.
+  It's good for scalability in comparison to other trees.

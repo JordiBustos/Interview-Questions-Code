@@ -13,8 +13,8 @@ In this exercise we will pass a set object to the checkSet function. It should r
 Now you've successfully learned how to use the ES6 Set() object, good job!
 */
 
-function checkSet(set){
-   // Only change code below this line
-   return [...set]
-   // Only change code above this line
+function checkSet(set) {
+  // Only change code below this line
+  return [...set];
+  // Only change code above this line
 }

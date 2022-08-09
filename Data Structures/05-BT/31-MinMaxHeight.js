@@ -10,44 +10,42 @@ Write two methods for our binary tree: findMinHeight and findMaxHeight. These me
 
 */
 
-var displayTree = tree => console.log(JSON.stringify(tree, null, 2));
-function Node(value) {
-  this.value = value;
-  this.left = null;
-  this.right = null;
+var displayTree = (tree) => console.log(JSON.stringify(tree, null, 2));
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
 }
-function BinarySearchTree() {
-  this.root = null;
-  // Only change code below this line
-  this.findMinHeight = () => {
-    if (this.root === null) return -1;
+class BinarySearchTree {
+  constructor() {
+    this.root = null;
+    // Only change code below this line
+    this.findMinHeight = () => {
+      if (this.root === null) return -1;
 
-    const advanceNode = (node) => {
-      //base case node === null
-      if (!node) return (-1);
-      return 1 + Math.min(
-        advanceNode(node.left),
-        advanceNode(node.right)
-      )
-    }
-    return advanceNode(this.root);
-  }
+      const advanceNode = (node) => {
+        //base case node === null
+        if (!node) return -1;
+        return 1 + Math.min(advanceNode(node.left), advanceNode(node.right));
+      };
+      return advanceNode(this.root);
+    };
 
-  this.findMaxHeight = () => {
-    if (this.root === null) return -1;
-    const advanceNode = (node) => {
-      //base case node === null
-      if (!node) return (-1);
-      return 1 + Math.max(
-        advanceNode(node.left),
-        advanceNode(node.right)
-      )
-    }
-    return advanceNode(this.root);
-  }
+    this.findMaxHeight = () => {
+      if (this.root === null) return -1;
+      const advanceNode = (node) => {
+        //base case node === null
+        if (!node) return -1;
+        return 1 + Math.max(advanceNode(node.left), advanceNode(node.right));
+      };
+      return advanceNode(this.root);
+    };
 
-  this.isBalanced = () => {
-    return this.findMaxHeight() === this.findMinHeight()
+    this.isBalanced = () => {
+      return this.findMaxHeight() === this.findMinHeight();
+    };
+    // Only change code above this line
   }
-  // Only change code above this line
 }

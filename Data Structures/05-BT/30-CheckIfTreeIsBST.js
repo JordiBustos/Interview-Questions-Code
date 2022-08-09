@@ -8,13 +8,17 @@ In this challenge, you will create a utility for your tree. Write a JavaScript m
 */
 
 var displayTree = (tree) => console.log(JSON.stringify(tree, null, 2));
-function Node(value) {
-  this.value = value;
-  this.left = null;
-  this.right = null;
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
 }
-function BinarySearchTree() {
-  this.root = null;
+class BinarySearchTree {
+  constructor() {
+    this.root = null;
+  }
 }
 function isBinarySearchTree(tree) {
   // Only change code below this line
@@ -24,18 +28,20 @@ function isBinarySearchTree(tree) {
     if (!node[direction]) return false;
     // direction is bad if
     //     1) node values are out of order
-    return (direction === "left"
-             ? (node.value <= node.left.value)
-             : (node.value >= node.right.value)) ||
-     // OR 2) the sub-tree in that direction is bad
-             !isGoodTree(node[direction])
-  }
+    return (
+      (direction === "left"
+        ? node.value <= node.left.value
+        : node.value >= node.right.value) ||
+      // OR 2) the sub-tree in that direction is bad
+      !isGoodTree(node[direction])
+    );
+  };
 
   const isGoodTree = (node) => {
     if (isBadDirection(node, "left")) return false;
     if (isBadDirection(node, "right")) return false;
     return true;
-  }
+  };
 
   return isGoodTree(tree.root);
   // Only change code above this line

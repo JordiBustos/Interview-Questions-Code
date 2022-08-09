@@ -14,35 +14,37 @@ We’ve started writing a PriorityQueue in the code editor. You will need to add
 The enqueue should accept items with the format shown above (['human', 1]) where 1 represents the priority. dequeue and front should return only the item's name, not its priority.
 */
 
-function PriorityQueue () {
-  this.collection = [];
-  this.printCollection = function() {
-    console.log(this.collection);
-  };
-  // Only change code below this line
-  this.enqueue = function(item) {
-    let index = this.collection.findIndex(elem => elem[1] > item[1]);
-    if (index !== -1) {
-      this.collection.splice(index, 0, item);
-    } else {
-      this.collection.push(item);
-    }
-  }
+class PriorityQueue {
+  constructor() {
+    this.collection = [];
+    this.printCollection = function () {
+      console.log(this.collection);
+    };
+    // Only change code below this line
+    this.enqueue = function (item) {
+      let index = this.collection.findIndex(elem => elem[1] > item[1]);
+      if (index !== -1) {
+        this.collection.splice(index, 0, item);
+      } else {
+        this.collection.push(item);
+      }
+    };
 
-  this.dequeue = function() {
-    return this.collection.shift()[0];
-  }
+    this.dequeue = function () {
+      return this.collection.shift()[0];
+    };
 
-  this.size = function() {
-    return this.collection.length;
-  }
+    this.size = function () {
+      return this.collection.length;
+    };
 
-  this.isEmpty = function() {
-    return this.size() === 0;
-  }
+    this.isEmpty = function () {
+      return this.size() === 0;
+    };
 
-  this.front = function() {
-    return this.collection[0][0];
+    this.front = function () {
+      return this.collection[0][0];
+    };
+    // Only change code above this line
   }
-  // Only change code above this line
 }

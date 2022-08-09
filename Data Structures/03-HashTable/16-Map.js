@@ -12,26 +12,26 @@ size returns the number of items in the map
 clear empties the map
 */
 
-var Map = function() {
+var Map = function () {
   this.collection = {};
   // Only change code below this line
-  this.has = key => {
-    if (this.collection[key] !== undefined) return true
-    return false
-  }
+  this.has = (key) => {
+    if (this.collection[key] !== undefined) return true;
+    return false;
+  };
 
   this.add = (key, value) => {
     this.collection[key] = value;
-  }
+  };
 
-  this.remove = key => {
-    delete this.collection[key]
-  }
+  this.remove = (key) => {
+    delete this.collection[key];
+  };
 
-  this.get = key => {
-    if (this.has(key)) return this.collection[key]
-    return undefined
-  }
+  this.get = (key) => {
+    if (this.has(key)) return this.collection[key];
+    return undefined;
+  };
 
   this.values = () => {
     //Object.values returns an array of a given object's own enumerable property values
@@ -45,8 +45,8 @@ var Map = function() {
     console.log(Object.values(object1));
     expected output: Array ["somestring", 42, false]
     */
-    return [...Object.values(this.collection)]
-  }
+    return [...Object.values(this.collection)];
+  };
 
   this.size = () => {
     /*

@@ -20,7 +20,6 @@ Generally Strassen’s Method is not preferred for practical applications for fo
 
 The implementation was made it on python to use numpy matrix
 '''
-
 import numpy as np
 
 def splitMatrix(M):
@@ -54,13 +53,13 @@ def strassen(X, Y):
 
     return C
 
+
 def squareMatrixMultiply(A, B):
     # Takes O(n^3) time
     n, _ = A.shape
     C = np.matrix()
-
-    for (i in range(n)):
-        for(j in range(n)):
+    for i in range(n):
+        for j in range(n):
             C[i][j] = 0
-            for (k in range(n)):
+            for k in range(n):
                 C[i][j] += A[i][k] * B[k][j]

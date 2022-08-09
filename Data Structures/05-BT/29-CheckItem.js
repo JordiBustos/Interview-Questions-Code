@@ -4,28 +4,30 @@ Now that we have a general sense of what a binary search tree is let's talk abou
 In this challenge, we will create a utility for our tree. Write a method isPresent which takes an integer value as input and returns a boolean value for the presence or absence of that value in the binary search tree.
 */
 
-var displayTree = tree => console.log(JSON.stringify(tree, null, 2));
-function Node(value) {
-  this.value = value;
-  this.left = null;
-  this.right = null;
+var displayTree = (tree) => console.log(JSON.stringify(tree, null, 2));
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
 }
-function BinarySearchTree() {
-  this.root = null;
-  // Only change code below this line
-  this.isPresent = (value, node = this.root) => {
-    if (!this.root) return false;
-    if (node.value === value) return true;
+class BinarySearchTree {
+  constructor() {
+    this.root = null;
+    // Only change code below this line
+    this.isPresent = (value, node = this.root) => {
+      if (!this.root) return false;
+      if (node.value === value) return true;
 
-    if (node.value > value) {
-      if (node.left === null) return false;
-      return this.isPresent(value, node.left);
-
-    } else {
+      if (node.value > value) {
+        if (node.left === null) return false;
+        return this.isPresent(value, node.left);
+      } else {
         if (node.right === null) return false;
         return this.isPresent(value, node.right);
-    }
-
+      }
+    };
+    // Only change code above this line
   }
-  // Only change code above this line
 }

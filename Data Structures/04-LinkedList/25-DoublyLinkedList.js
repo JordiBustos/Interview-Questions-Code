@@ -23,7 +23,7 @@ class DoublyLinkedList {
   }
 
   add(item) {
-    const newNode = new Node(data this.tail);
+    const newNode = new Node(data, this.tail);
     if (!this.head) {
       this.head = newNode;
       this.tail = newNode;
