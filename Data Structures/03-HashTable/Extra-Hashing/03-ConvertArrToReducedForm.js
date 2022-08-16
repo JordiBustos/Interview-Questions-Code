@@ -27,7 +27,7 @@
 
 
 const convert = (arr, n) => {
-  let tmp = [...arr].sort((a, b) return a - b);
+  let tmp = [...arr].sort((a, b) => a - b);
 
   m = new Map()
 

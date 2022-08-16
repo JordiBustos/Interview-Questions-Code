@@ -2,7 +2,7 @@ hashFunction = (key, tableSize) => {
   // Two arbitrary primes 13, 17 to spread out hashedKey
   let hashedKey = 17;
   for (let i = 0; i < key.length; i++) {
-    hashedKey = (13 * hash * key.charCodeAt(i)) % tableSize;
+    hashedKey = (13 * key.charCodeAt(i)) % tableSize;
   }
   return hashedKey;
 };
