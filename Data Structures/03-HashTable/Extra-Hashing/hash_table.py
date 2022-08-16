@@ -69,7 +69,10 @@ hash_table.set_item('b', 2)
 hash_table.set_item('c', 3)
 hash_table.set_item('d', 4)
 
+print(hash_table.set_item.__doc__)
+
 print(hash_table.get_item('a'))
 print(hash_table.get_item('b'))
+
 
 
