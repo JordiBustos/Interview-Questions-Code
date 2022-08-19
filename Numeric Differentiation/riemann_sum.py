@@ -5,7 +5,7 @@ def riemann_sum(f, a, b, rule="left", delta_x=.01):
     """
     f is the function.
     [a, b] is the interval.
-    rule determines if we compute right riemann,left riemann, midpoint riemann, is left by default.
+    rule determines if we compute right, left, midpoint, riemann sum. Left by default.
     delta_x is the width of the partition on the x axis, .01 by default.
     """
     acc = 0
