@@ -27,6 +27,11 @@ def riemann_sum(f, a, b, rule="left", delta_x=.01):
         for i in range(n-1):
             acc += f(partition[i+1])
 
+    """
+    We can multiply acc by delta_x at the end because the
+    sum from i to k of n * c is equal to c * the sum from i to k of n
+    in particular the sum of from i = 0 to n-1 * delta_x is equal to delta_x * the sum of from i = 0 to n-1 ...
+    """
     return acc * delta_x
 
 
