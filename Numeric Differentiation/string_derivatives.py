@@ -52,7 +52,8 @@ def diff_polynomials(f):
 
                 dydx.append(dydx_p)
             else:
-                dydx.append('0')
+                # we remove the operator from the list because we are adding or substracting 0
+                operators.pop()
 
     k = 0
     dydx_str = ''
