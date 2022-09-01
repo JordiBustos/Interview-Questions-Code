@@ -27,6 +27,8 @@ body {
 table td {
   color: #7232f2;
   background-color:white;
+  border-radius:1px;
+  padding: 0.2rem 0.2rem;
 }
 
 #main table {
