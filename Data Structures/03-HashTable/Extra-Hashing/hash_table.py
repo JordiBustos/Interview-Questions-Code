@@ -4,10 +4,11 @@ class HashTable:
         Methods: set_item, get_item.
         Private methods: __resize, __hash_function
     """
+
     def __init__(self):
         self.table = [None] * 2003
-        self.num_items =  0
-    
+        self.num_items = 0
+
     def set_item(self, key, value):
         """
         Receives a key and a value and adds them to the hash table.
@@ -32,7 +33,7 @@ class HashTable:
         the place where self.table[i][j][0] sea la key and return self.table[i][j][1]
         """
         i = self.__hash_function(key, len(self.table))
-        if (not self.table[i]): 
+        if (not self.table[i]):
             return None
 
         for j in range(len(self.table[i])):
@@ -61,7 +62,7 @@ class HashTable:
             hashed_key = (random_prime_number * ord(key[i]) % table_size)
 
         return hashed_key
-    
+
 
 hash_table = HashTable()
 hash_table.set_item('a', 1)
@@ -73,6 +74,3 @@ print(hash_table.set_item.__doc__)
 
 print(hash_table.get_item('a'))
 print(hash_table.get_item('b'))
-
-
-
