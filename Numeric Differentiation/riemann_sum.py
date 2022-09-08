@@ -20,7 +20,6 @@ def riemann_sum(f, a, b, rule="left", delta_x=.01):
         for i in range(n-1):
             midpoint = (partition[i] + partition[i+1]) / 2
             acc += f(midpoint)
-
     else:
         for i in range(n-1):
             acc += f(partition[i+1])
@@ -39,7 +38,7 @@ def compute_with_unequal_partition(f, delta_x):
     acc = 0
     n = len(delta_x)
 
-    for i in range(n):
+    for i in range(n-1):
         width = delta_x[i+1] - delta_x[i]
         acc += f(delta_x[i]) * width
 
