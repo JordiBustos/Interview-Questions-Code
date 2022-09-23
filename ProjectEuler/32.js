@@ -10,7 +10,6 @@ Hint: Some products can be obtained in more than one way so be sure to only incl
 
 const pandigitalProducts = (n) => {
 	if (n === 1) return 1;
-
 	const isPandigital = (numString) => {
 		const digits = numString.split("").map(Number);
 		for (let i = 1; i <= digits.length; i++) {
@@ -65,3 +64,5 @@ const pandigitalProducts = (n) => {
 	}
 	return sum;
 };
+
+console.log(pandigitalProducts(7));
