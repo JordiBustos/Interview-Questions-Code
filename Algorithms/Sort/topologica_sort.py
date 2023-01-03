@@ -1,16 +1,27 @@
 # assumed directed acyclic graph 
-
 from collections import defaultdict
 
 
 class Graph:
-    def __init__(self, vertices):
+    def __init__(self):
         self.graph = defaultdict(list)
-        self.V = vertices
+        self.V = 0
 
     def addEdge(self, u, v):
-        self.graph[u].append(v)
+        if u in self.graph and v in self.graph:
+            self.graph[u].append(v)
+        else:
+            print('you should add the vertices first')
 
+    def addVertex(self, v):
+        if v not in self.graph:
+            self.graph[v] = []
+            self.V += 1
+        else: 
+            print('Vertex {} already in graph'.format(v))
+
+    def adjustNoVertices(self, n):
+        self.V += n
 
     def __tsort_util(self, v, visited, ordering):
         visited[v] = True
@@ -31,7 +42,9 @@ class Graph:
         print(ordering[::-1])
 
 if __name__ == '__main__':
-    g = Graph(6)
+    g = Graph()
+    for i in range(6):
+        g.addVertex(i)
     g.addEdge(0, 1)
     g.addEdge(1, 5)
     g.addEdge(1, 3)
