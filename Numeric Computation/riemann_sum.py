@@ -30,7 +30,7 @@ def riemann_sum(f, a, b, rule="left", delta_x=.01):
 
 def compute_with_unequal_partition(f, delta_x):
     """
-    Here delta_x is an array [a, x_i, x_i+1, ..., b] and the distance between each x_i is delta_x[i+1] - delta_x[i]
+    Here delta_x is an array [a, x_i, x_i+1, ..., b] and the distance between each x_j is delta_x[i+1] - delta_x[i]
     can be different for each x_i :)
     delta_x[0] must be equal to a
     delta_x[len(delta_x)-1] must be equal to b

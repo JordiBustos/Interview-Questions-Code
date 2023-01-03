@@ -6,7 +6,7 @@ def add_vertex(v):
   if v in vertices:
     print("Vertex ", v, " already exists")
   else:
-    vertices_no = vertices_no + 1
+    vertices_no += 1
     vertices.append(v)
     if vertices_no > 1:
         for vertex in graph:
