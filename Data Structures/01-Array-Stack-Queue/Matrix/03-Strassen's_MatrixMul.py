@@ -23,7 +23,7 @@ The implementation was made it on python to use numpy matrix
 import numpy as np
 
 def splitMatrix(M):
-    row, col = M.shape
+    row, col = M['shape']
     rowDivided, colDivided = row//2, col//2
     return M[:rowDivided, :colDivided], M[:rowDivided, colDivided:], M[rowDivided:, :colDivided], M[rowDivided:, colDivided:]
 
@@ -56,7 +56,7 @@ def strassen(X, Y):
 
 def squareMatrixMultiply(A, B):
     # Takes O(n^3) time
-    n, _ = A.shape
+    n, _ = A['shape']
     C = np.matrix()
     for i in range(n):
         for j in range(n):
