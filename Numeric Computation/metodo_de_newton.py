@@ -9,7 +9,7 @@ def metodo_de_newton(f, d, p0, tol, N):
       p0 = p
     return None
 
-def derivada(f, a, h=0.00001):
+def d(f, a, h=0.00001):
   return (f(a + h) - f(a))/h
 
 def f(x):
