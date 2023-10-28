@@ -1,14 +1,15 @@
 import matplotlib.pyplot as plt
+from numpy import sign
 
 def metodo_de_biseccion(f, a, b, N, TOL):
     rangea = a
     rangeb = b
     for _ in range(1, N+1):
-        p = (a + b) / 2.0
+        p = a + (b - a) / 2.0
         graficar_aproximacion(f, p, rangea, rangeb)
         if (f(p) < 0.01 and f(p) > -0.01) or abs(a - b) / 2.0 < TOL:
             return p
-        elif f(a) * f(p) < 0:
+        elif sign(f(a)) * sign(f(p)) < 0:
             b = p
         else:
             a = p
