@@ -46,7 +46,7 @@ if is_diag_dominant(A) and len(A) == len(b):
 
     for k in range(1, 50):
         for i in range(len(equations)):
-            x[i] = equations[i](x_old)
+            x[i] = equations[i](x)
         dx = compute_tolerance(x, x_old)
 
         print("%d," % k + ",".join([f" %.4f" % x[i] for i in range(len(b))]))
