@@ -44,8 +44,6 @@ if is_diag_dominant(A) and len(A) == len(b):
     x = np.zeros(len(b))
     equations = create_linear_equations(A, b)
 
-    print("Iteration results")
-    print(" k,    x1,    x2,    x3 ")
     for k in range(1, 50):
         for i in range(len(equations)):
             x[i] = equations[i](x_old)
