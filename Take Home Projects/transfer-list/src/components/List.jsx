@@ -1,30 +1,35 @@
 import PropTypes from "prop-types";
+import ListItem from "./ListItem";
 
-export default function List({ items, setCheckedItems }) {
+export default function List({ items, setCheckedItems, checkedItems }) {
   function onToggleItem(item) {
     setCheckedItems((prevItems) => {
-      const itemIndex = prevItems.findIndex((prevItem) => prevItem === item.item);
-      console.log(itemIndex)
+      const itemIndex = prevItems.findIndex(
+        (prevItem) => prevItem === item.value
+      );
       if (itemIndex === -1) {
-        return [...prevItems, item.item];
+        return [...prevItems, item.value];
       }
-      return prevItems.filter((prevItem) => prevItem !== item.item);
+      return prevItems.filter((prevItem) => prevItem !== item.value);
     });
   }
 
-  function ListItem(item) {
-    return (
-      <li key={item.item} className="list-item">
-        <input onClick={() => onToggleItem(item)} type="checkbox" />
-        <span>{item.item}</span>
-      </li>
-    );
-  }
+  return <ul>{createItemsList(items, onToggleItem, checkedItems)}</ul>;
+}
 
-  return <ul>{items.map(ListItem)}</ul>;
+function createItemsList(items, onToggleItem, checkedItems) {
+  return items.map((item) => (
+    <ListItem
+      key={item.value}
+      item={item}
+      onToggleItem={onToggleItem}
+      checkedItems={checkedItems}
+    />
+  ));
 }
 
 List.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
   setCheckedItems: PropTypes.func,
+  checkedItems: PropTypes.arrayOf(PropTypes.number),
 };
