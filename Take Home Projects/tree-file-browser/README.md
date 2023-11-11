@@ -1,0 +1,3 @@
+The code will display the file/folder structure in a hierarchical manner, where each folder and file is represented as a node in the tree. The code will traverse the tree recursively, starting from the root node, and display each node as a menu item in the tree-menu.
+
+The end result will be a visual representation of the file/folder structure in the form of a tree-menu, where the user can expand and collapse nodes to view the contents of each folder and file.
