@@ -22,3 +22,12 @@ export function breakify(name: string) {
   }
   return result;
 }
+
+export function createBreakedName(breakified: string[]) {
+  return breakified.map((name, index) => (
+    <span key={index} className={index === 1 ? "breaked" : ""}>
+      {name}
+      <br />
+    </span>
+  ));
+}
