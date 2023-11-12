@@ -6,7 +6,7 @@ interface TitleProps {
   isFirst: boolean;
 }
 
-export default function Title({ arr, isFirst }: TitleProps) {
+export default function Title({ arr, isFirst }: TitleProps): JSX.Element {
   const titleLevel = isFirst ? 1 : 2;
   const defaultText = isFirst ? "Enter your name" : "Enter your last name";
 
