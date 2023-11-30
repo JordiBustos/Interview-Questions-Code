@@ -8,7 +8,6 @@
     If the exercise is timed we have to take in consideration the time spent by the user in the exercise, even if the student is able to 
     answer a hard exercise correctly, if he takes too long to answer it, the student will gain fewer points.
 """
-import math
 
 
 class Player:
@@ -32,7 +31,6 @@ class Elo:
         :return: Expected score of the user in the exercise
         """
         diff = float(b) - float(a)
-        print(diff)
         return 1 / (1 + 10 ** (diff / 400))
 
     def _compute_uncertainties(self, p):
@@ -49,21 +47,6 @@ class Elo:
         """
         U = self._compute_uncertainties(p)
         return self.k_factor * (1 + self.k_plus * U - self.k_minus * U)
-
-    def _expected_timed(self, user, exercise):
-        """
-        Computes the expected score of the user in the exercise if the exercise is timed.
-        :param user: elo rating of the user
-        :param exercise: elo rating of the exercise
-        :return: Expected score of the user in the exercise
-        """
-        diff = float(user) - float(exercise)
-        if diff == 0:
-            return 0.5  # draw and avoid division by zero
-        exp_term = math.exp(2 * diff)
-        first_term = (exp_term + 1) / (exp_term - 1)
-
-        return float(first_term) - 1 / diff
 
     def update(
         self, user, exercise, score=1, is_timed=False, time_limit=None, time_spent=None
@@ -154,5 +137,39 @@ def test_cases():
     print()
 
 
+import matplotlib.pyplot as plt
+
+
+def plot_elo_over_time(user, exercise, is_timed, time_limit, time_spent, num_steps=100):
+    elo_values = []
+    time_values = []
+    elo = Elo()
+
+    for step in range(num_steps + 1):
+        current_time_spent = step / num_steps * time_limit
+        elo_gain = elo.update(
+            user,
+            exercise,
+            is_timed=is_timed,
+            time_limit=time_limit,
+            time_spent=current_time_spent,
+        )[0]
+
+        elo_values.append(elo_gain)
+        time_values.append(current_time_spent)
+
+    plt.plot(time_values, elo_values, marker="o")
+    plt.title("Elo Gain Over Time")
+    plt.xlabel("Time Spent (s)")
+    plt.ylabel("Elo Gain")
+    plt.grid(True)
+    plt.show()
+
+
 if __name__ == "__main__":
     test_cases()
+
+    # Plot for a timed match
+    user = Player(elo=1800, U=0.05, days_since_last_answered=10)
+    exercise = Player(elo=1750, U=0.03, days_since_last_answered=15)
+    plot_elo_over_time(user, exercise, is_timed=True, time_limit=1000, time_spent=None)
