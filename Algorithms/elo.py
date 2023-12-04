@@ -8,6 +8,8 @@
     If the exercise is timed we have to take in consideration the time spent by the user in the exercise, even if the student is able to 
     answer a hard exercise correctly, if he takes too long to answer it, the student will gain fewer points.
 """
+import random
+import matplotlib.pyplot as plt
 
 
 class Player:
@@ -33,7 +35,18 @@ class Elo:
         diff = float(b) - float(a)
         return 1 / (1 + 10 ** (diff / 400))
 
-    def _compute_uncertainties(self, p):
+    def _expected_shifted(self, a, b, n):
+        """
+        Computes the expected score of the user in the exercise.
+        :param a: Elo rating of the user
+        :param b: Elo rating of the exercise
+        :param n: number of answers in multiple choice
+        :return: Expected score of the user in the exercise
+        """
+        diff = float(b) - float(a)
+        return 1 / n + (1 - 1 / n) / (1 + 10 ** (diff / 400))
+
+    def _compute_uncertainty(self, p):
         """
         Computes the uncertainties of the player.
         :param p: Player object representing the user
@@ -43,13 +56,21 @@ class Elo:
     def _compute_k_factor(self, p):
         """
         Computes the k factor of the player.
-        :param p: Player object representing the user
+        :param p: Player object representing the user or exercise
         """
-        U = self._compute_uncertainties(p)
+        U = self._compute_uncertainty(p)
         return self.k_factor * (1 + self.k_plus * U - self.k_minus * U)
 
     def update(
-        self, user, exercise, score=1, is_timed=False, time_limit=None, time_spent=None
+        self,
+        user,
+        exercise,
+        score=1,
+        is_timed=False,
+        time_limit=None,
+        time_spent=None,
+        is_multiple_choice=False,
+        n=None,
     ):
         """
         Updates the Elo rating of the user and the exercise.
@@ -59,9 +80,14 @@ class Elo:
         :param is_timed: Boolean indicating if the exercise is timed
         :param time_limit: Time limit of the exercise in seconds
         :param time_spent: Time spent by the user in the exercise in seconds
+        :param is_multiple_choice: Boolean indicating if the exercise is multiple choice
         :return: Tuple containing the new Elo rating of the user and the exercise
         """
-        expected_a = self._expected(user.elo, exercise.elo)
+        expected_a = (
+            self._expected(user.elo, exercise.elo)
+            if not is_multiple_choice
+            else self._expected_shifted(user.elo, exercise.elo, n)
+        )
         expected_b = 1 - expected_a
 
         if is_timed:
@@ -137,39 +163,78 @@ def test_cases():
     print()
 
 
-import matplotlib.pyplot as plt
+def plot_elo_over_time(users, exercises, is_timed, time_limit, num_steps=100):
+    num_matches = min(len(users), len(exercises))
+    elo_values = [[] for _ in range(num_matches)]
+    time_values = [[] for _ in range(num_matches)]
+    initial_elo_labels = []
 
-
-def plot_elo_over_time(user, exercise, is_timed, time_limit, time_spent, num_steps=100):
-    elo_values = []
-    time_values = []
     elo = Elo()
+
+    for i in range(num_matches):
+        initial_elo_labels.append(f"Player {i+1} (Elo: {users[i].elo})")
+        initial_elo_labels.append(f"Exercise {i+1} (Elo: {exercises[i].elo})")
 
     for step in range(num_steps + 1):
         current_time_spent = step / num_steps * time_limit
-        elo_gain = elo.update(
-            user,
-            exercise,
-            is_timed=is_timed,
-            time_limit=time_limit,
-            time_spent=current_time_spent,
-        )[0]
 
-        elo_values.append(elo_gain)
-        time_values.append(current_time_spent)
+        for i in range(num_matches):
+            elo_gain = elo.update(
+                users[i],
+                exercises[i],
+                is_timed=is_timed,
+                time_limit=time_limit,
+                time_spent=current_time_spent,
+            )[0]
 
-    plt.plot(time_values, elo_values, marker="o")
-    plt.title("Elo Gain Over Time")
+            elo_values[i].append(elo_gain)
+            time_values[i].append(current_time_spent)
+
+    for i in range(num_matches):
+        plt.plot(time_values[i], elo_values[i], marker="o", label=f"Match {i+1}")
+
+    plt.title("Elo Gain Over Time for Multiple Matches")
     plt.xlabel("Time Spent (s)")
     plt.ylabel("Elo Gain")
+    plt.legend(initial_elo_labels, loc="upper left", bbox_to_anchor=(1, 1))
     plt.grid(True)
     plt.show()
 
 
-if __name__ == "__main__":
-    test_cases()
+def generate_players_and_exercises(num_players, num_exercises):
+    players = [
+        Player(
+            elo=random.randint(1000, 2000),
+            U=random.uniform(0.01, 1),
+            days_since_last_answered=random.randint(1, 30),
+        )
+        for _ in range(num_players)
+    ]
+    exercises = [
+        Player(
+            elo=random.randint(1000, 3000),
+            U=random.uniform(0.01, 1),
+            days_since_last_answered=random.randint(1, 30),
+        )
+        for _ in range(num_exercises)
+    ]
+    return players, exercises
 
-    # Plot for a timed match
-    user = Player(elo=1800, U=0.05, days_since_last_answered=10)
-    exercise = Player(elo=1750, U=0.03, days_since_last_answered=15)
-    plot_elo_over_time(user, exercise, is_timed=True, time_limit=1000, time_spent=None)
+
+if __name__ == "__main__":
+    num_players = 5
+    num_exercises = 5
+
+    users, exercises = generate_players_and_exercises(num_players, num_exercises)
+
+    for user in users:
+        print(f"User Elo: {user.elo}, User Uncertainties: {user.U}")
+
+    for exercise in exercises:
+        print(
+            f"Exercise Elo: {exercise.elo}, Exercise Uncertainties: {exercise.U}, Days Since Last Answered: {exercise.days_since_last_answered}"
+        )
+
+    print()
+
+    plot_elo_over_time(users, exercises, is_timed=True, time_limit=1000)
