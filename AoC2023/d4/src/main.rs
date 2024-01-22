@@ -2,24 +2,32 @@ use std::collections::HashMap;
 use std::fs::File;
 use std::io::{self, BufRead, BufReader, Lines};
 use std::path::Path;
+use std::time::Instant;
 
 fn main() {
     if let Ok(lines) = read_lines("./data.txt") {
         let mut total: u32 = 0;
-        let mut ammount: [u16; 200] = Default::default();
+        let mut cards: Vec<u32> = vec![1; 199];
 
-        for line in lines.flatten() {
+        for (i, line) in lines.flatten().enumerate() {
             let splitted_line: Vec<&str> = line.split_whitespace().collect();
             let winners_in_line = get_card_points(splitted_line);
 
+            if winners_in_line == 0 {
+                continue;
+            }
             // part 2
+            for j in 0..winners_in_line {
+                let k = i as usize;
+                let n = j as usize;
+                cards[k + n + 1] += cards[k]
+            }
 
             // part 1
-            if winners_in_line > 0 {
-                total += u32::pow(2, winners_in_line - 1);
-            }
+            total += u32::pow(2, winners_in_line - 1);
         }
         println!("Total points: {}", total);
+        println!("Total cards: {}", cards.iter().sum::<u32>());
     }
 }
 
