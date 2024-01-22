@@ -1,3 +1,5 @@
+import time
+
 DIRECTIONS: list = [
     (-1, -1),  # Top-left
     (-1, 0),  # Up
@@ -108,6 +110,7 @@ def calculate_sum_of_part_numbers(
 
 
 def main():
+    start_time = time.time()
     with open("data.txt") as file:
         engine_schematic = file.read()
 
@@ -120,6 +123,7 @@ def main():
     )
     print(f"Sum of part numbers is {total_sum}")
     print(f"Gear ratio is {ratio}")
+    print(f"Execution time: {time.time() - start_time}")
 
 
 if __name__ == "__main__":
